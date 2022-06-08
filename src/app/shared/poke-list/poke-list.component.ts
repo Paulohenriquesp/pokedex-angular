@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeApiService } from 'src/app/service/poke-api.service';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'poke-list',
   templateUrl: './poke-list.component.html',
@@ -14,26 +16,31 @@ export class PokeListComponent implements OnInit {
   public apiError: boolean = false;
 
   constructor(
-    private pokeApiService: PokeApiService
+    private pokeApiService: PokeApiService,
+    private spinner: NgxSpinnerService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.pokeApiService.apiListAllPokemons.subscribe(
       res => {
         this.setAllPokemons = res.results;
-        this.getAllPokemons = this.setAllPokemons;        
+        this.getAllPokemons = this.setAllPokemons;       
       },
       error => {
+        
         this.apiError = true;
       }
-    );
-  }
+      );     
+  }  
 
   public getSearch(value: string){
     const filter = this.setAllPokemons.filter((res: any) => {
       return !res.name.indexOf(value.toLowerCase());
-    });
+    });    
     this.getAllPokemons = filter;
+    
   }
 
 }
+
+

@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     PokeHeaderComponent,
     PokeSearchComponent,
-    PokeListComponent
+    PokeListComponent,
   ],
   exports: [
     PokeHeaderComponent,

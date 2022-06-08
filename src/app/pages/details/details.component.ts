@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { forkJoin } from 'rxjs';
 import { PokeApiService } from 'src/app/service/poke-api.service';
 
@@ -19,20 +20,19 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private pokeApiService: PokeApiService
+    private pokeApiService: PokeApiService,    
   ) {}
 
   ngOnInit(): void {
     this.getPokemon();
   }
 
-  public getPokemon() {
+  public getPokemon() {    
     const id = this.activatedRoute.snapshot.params['id'];
     const pokemon = this.pokeApiService.apiGetPokemons(
       `${this.urlPokemon}/${id}`
     );
-    const name = this.pokeApiService.apiGetPokemons(`${this.urlName}/${id}`);
-
+    const name = this.pokeApiService.apiGetPokemons(`${this.urlName}/${id}`);   
     return forkJoin([pokemon, name]).subscribe(
       (res) => {
         this.pokemon = res;

@@ -1,10 +1,22 @@
 import { Component } from '@angular/core';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`,
+  templateUrl: 'app-component.html',
+  
   
 })
 export class AppComponent {
-  
+  constructor(private spinner: NgxSpinnerService) {}
+
+  ngOnInit() {    
+    this.spinner.show();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 5000);
+  }
 }
+  
+
