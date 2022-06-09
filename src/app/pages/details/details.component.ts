@@ -20,7 +20,8 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private pokeApiService: PokeApiService,    
+    private pokeApiService: PokeApiService,
+    private spinner: NgxSpinnerService    
   ) {}
 
   ngOnInit(): void {
@@ -28,19 +29,21 @@ export class DetailsComponent implements OnInit {
   }
 
   public getPokemon() {    
+    this.spinner.show()
     const id = this.activatedRoute.snapshot.params['id'];
     const pokemon = this.pokeApiService.apiGetPokemons(
       `${this.urlPokemon}/${id}`
-    );
-    const name = this.pokeApiService.apiGetPokemons(`${this.urlName}/${id}`);   
-    return forkJoin([pokemon, name]).subscribe(
-      (res) => {
-        this.pokemon = res;
-        this.isLoading = true;
-      },
-      (error) => {
-        this.apiError = true;
-      }
-    );
+      );
+      const name = this.pokeApiService.apiGetPokemons(`${this.urlName}/${id}`);   
+      return forkJoin([pokemon, name]).subscribe(
+        (res) => {
+          this.pokemon = res;
+          this.isLoading = true;
+          this.spinner.hide()
+        },
+        (error) => {
+          this.apiError = true;
+        }
+        );
   }
 }

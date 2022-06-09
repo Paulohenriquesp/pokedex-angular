@@ -23,11 +23,12 @@ export class PokeListComponent implements OnInit {
   ngOnInit(): void {    
     this.pokeApiService.apiListAllPokemons.subscribe(
       res => {
+        this.spinner.show();
         this.setAllPokemons = res.results;
         this.getAllPokemons = this.setAllPokemons;           
+        this.spinner.hide()
       },
       error => {
-        
         this.apiError = true;
       }
       );     
