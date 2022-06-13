@@ -10,9 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 
 
-
-
-
 @NgModule({
   declarations: [
     HomeComponent,

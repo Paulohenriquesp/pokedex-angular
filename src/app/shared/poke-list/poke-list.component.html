@@ -1,7 +1,7 @@
 <!--Pokemon Search-->
 <poke-search (emmitSearch)="getSearch($event)"></poke-search>
 
-<section class="listagem">
+<div class="listagem .pokemons">
   <ng-template ngFor let-pokemon [ngForOf]="getAllPokemons">
     <a
       [routerLink]="['details', pokemon.status.id]"
@@ -25,7 +25,7 @@
       </section>
     </a>
   </ng-template>
-</section>
+</div>
 <img
   src="../../../assets/error.svg"
   alt="Deu erro na mostragem do pokemon"

@@ -18,7 +18,7 @@ export class PokeApiService {
       tap((res) => {
         res.results.map((resPokemons: any) => {
           this.apiGetPokemons(resPokemons.url).subscribe(
-            res => resPokemons.status = res
+            (res) => (resPokemons.status = res)
           );
         });
       })
@@ -26,5 +26,11 @@ export class PokeApiService {
   }
   public apiGetPokemons(url: string): Observable<any> {
     return this.http.get<any>(url).pipe(map((res) => res));
+  }
+
+  public getScrollPokemons(pageNumber: number, pageSize: number) {
+    return this.http.get(
+      `https://pokeapi.co/api/v2/pokemon?offset=${pageNumber}&limit=${pageSize}`
+    );
   }
 }
