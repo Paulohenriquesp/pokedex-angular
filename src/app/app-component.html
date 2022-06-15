@@ -1,4 +1,12 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-8bits" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-8bits"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
 
+<cdk-virtual-scroll-viewport [itemSize]="30"> </cdk-virtual-scroll-viewport>
 
 <router-outlet></router-outlet>

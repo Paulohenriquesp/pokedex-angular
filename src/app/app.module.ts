@@ -6,8 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+import { ScrollingModule } from '@angular/cdk/scrolling'
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     PagesModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ScrollingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
