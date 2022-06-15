@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 //Observable
 import { map, Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,21 @@ export class PokeApiService {
       })
     );
   }
+
+  /* public receveidPokemon(pageSize: number, pageNumber: number):Observable<any> {
+    return this.http.get<any>(
+      `${environment.url_pokemon}/pokemon?offset=${pageNumber}&limit=${pageSize}`
+    ).pipe(tap ((res) => res),
+    tap((res) => {
+      res.result.map((resPokemon: any) => {
+        this.apiGetPokemons(resPokemons.url).subscribe(
+          (res) => (resPokemon.status = res)
+        );
+      });
+    })
+    );
+  } */
+
   public apiGetPokemons(url: string): Observable<any> {
     return this.http.get<any>(url).pipe(map((res) => res));
   }

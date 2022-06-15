@@ -4,6 +4,7 @@ import { PokeHeaderComponent } from './poke-header/poke-header.component';
 import { PokeSearchComponent } from './poke-search/poke-search.component';
 import { PokeListComponent } from './poke-list/poke-list.component';
 import { RouterModule } from '@angular/router';
+import { PokeScrollingComponent } from './poke-scrolling/poke-scrolling.component';
 
 
 
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
     PokeHeaderComponent,
     PokeSearchComponent,
     PokeListComponent,
+    PokeScrollingComponent,
   ],
   exports: [
     PokeHeaderComponent,

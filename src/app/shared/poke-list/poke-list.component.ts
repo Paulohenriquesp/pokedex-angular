@@ -49,8 +49,7 @@ export class PokeListComponent implements OnInit {
     
   }
   
-  public getScrollPokemons(){
-    console.log('funcao exec', this.getScrollPokemons);
+  public getScrollPokemons(){    
     this.pokeApiService.getScrollPokemons(this.currentPage, this.pageSize).subscribe((data: any) => {
       this.obsArray.next(data);
       console.log('lista dos 10 pokemons', data)
