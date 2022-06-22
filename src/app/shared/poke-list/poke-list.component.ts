@@ -24,8 +24,11 @@ export class PokeListComponent implements OnInit {
 
   private obsArray: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   private pokemons$: Observable<any> = this.obsArray.asObservable();
-  private currentPage: number = 0;
-  private pageSize: number = 10;
+  public page: number = 0;
+  public qtd: number = 10;
+
+  public total: number = 0;
+  
 
   constructor(
     private pokeApiService: PokeApiService,
@@ -53,6 +56,34 @@ export class PokeListComponent implements OnInit {
     });
     this.getAllPokemons = filter;
   }
+
+  paginate($event: { page: any; }) {
+    console.log('alo', $event);
+    this.page = $event.page;
+    this.getAllPokemons();
+  }
+
+  /* receveidPokemon(){
+    this.spinner.show();
+    if (!this.pokemons$){ 
+    return this.pokeApiService
+    .getPokemonPaginator(this.page, this.qtd)
+    .subscribe((pokemons: any) => {
+      this.pokemons$ = pokemons.data;
+      this.total = pokemons.total;
+      this.spinner.hide();
+    });
+    } else { 
+      this.spinner.show()
+      this.pokeApiService.getPokemonPaginator(this.page, this.qtd, ).subscribe((pokemons: any ) => {
+        this.pokemons$ = pokemons.data;
+        this.total = pokemons.total;
+        this.spinner.hide();
+      })
+    }
+  } */
+
+
 
   /* public getScrollPokemons() {
     this.pokeApiService

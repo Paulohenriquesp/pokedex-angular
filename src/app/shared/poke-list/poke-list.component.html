@@ -26,6 +26,15 @@
       </section>
     </a>
   </ng-template>
+  <ng-container *ngIf="!apiError">
+    <p-paginator
+      styleClass="teste"
+      [rows]="10"
+      [totalRecords]="page"
+      [currentPageReportTemplate]="getAllPokemons + 1"
+      (onPageChange)="paginate($event)"
+    ></p-paginator>
+  </ng-container>
 </div>
 
 <img

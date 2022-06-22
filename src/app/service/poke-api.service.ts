@@ -26,27 +26,30 @@ export class PokeApiService {
     );
   }
 
-  /* public receveidPokemon(pageSize: number, pageNumber: number):Observable<any> {
-    return this.http.get<any>(
-      `${environment.url_pokemon}/pokemon?offset=${pageNumber}&limit=${pageSize}`
-    ).pipe(tap ((res) => res),
-    tap((res) => {
-      res.result.map((resPokemon: any) => {
-        this.apiGetPokemons(resPokemons.url).subscribe(
-          (res) => (resPokemon.status = res)
-        );
-      });
-    })
-    );
-  } */
-
+  getPokemonPaginator(page: number, qtd: number){
+    return this.http.get<any>(`${environment.url_pokemon}/pokemon?offset=${page}&limit=${qtd}`);
+  }
+  
   public apiGetPokemons(url: string): Observable<any> {
     return this.http.get<any>(url).pipe(map((res) => res));
   }
-
+  
   public getScrollPokemons(pageNumber: number, pageSize: number) {
     return this.http.get(
       `https://pokeapi.co/api/v2/pokemon?offset=${pageNumber}&limit=${pageSize}`
-    );
+      );
+    }
+    /* receveidPokemonPage(page: number, qtd: number):Observable<any> {
+      return this.http.get<any>(
+        `${environment.url_pokemon}/pokemon?offset=${page}&limit=${qtd}`
+      ).pipe(tap ((res) => res),
+      tap((res) => {
+        res.result.map((resPokemon: any) => {
+          this.apiGetPokemons(resPokemon.url).subscribe(
+            (res) => (resPokemon.status = res)
+          );
+        });
+      })
+      );
+    } */
   }
-}
