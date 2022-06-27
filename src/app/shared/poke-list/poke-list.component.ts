@@ -24,11 +24,12 @@ export class PokeListComponent implements OnInit {
 
   private obsArray: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   private pokemons$: Observable<any> = this.obsArray.asObservable();
-  public page: number = 0;
-  public qtd: number = 10;
-
-  public total: number = 0;
   
+  public page: any = 0;
+  public qtd: number = 10;
+  public total: number = 0;
+
+  public pokemons!: any[];
 
   constructor(
     private pokeApiService: PokeApiService,
@@ -37,11 +38,12 @@ export class PokeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.allPokemons();
-    
+    this.getPokemonPage();
+
     /* this.getScrollPokemons(); */
   }
 
-  allPokemons(){
+  allPokemons() {
     this.pokeApiService.apiListAllPokemons().subscribe(
       (res) => {
         this.spinner.show();
@@ -62,13 +64,25 @@ export class PokeListComponent implements OnInit {
     this.getAllPokemons = filter;
   }
 
-  paginate($event: { page: any; }) {
-    console.log('alo', $event);
-    this.page = $event.page;
-    this.getAllPokemons();
+  getPokemonPage() {
+    this.pokeApiService.getPokemonPaginator(this.page, this.qtd).subscribe(
+      (pokemons: any) => {
+        this.pokemons = pokemons.results;
+        this.total = pokemons.count;
+        console.log('total aeeee', pokemons.results)
+        console.log('cheeeeeguei', pokemons);
+      },
+      (error) => {
+        this.apiError = true;
+      }
+    );
   }
 
-
+  paginate($event: any) {
+    console.log($event);
+    this.page = $event.page;
+    this.getPokemonPage();
+  }
 
   /* receveidPokemon(){
     this.spinner.show();
@@ -89,8 +103,6 @@ export class PokeListComponent implements OnInit {
       })
     }
   } */
-
-
 
   /* public getScrollPokemons() {
     this.pokeApiService

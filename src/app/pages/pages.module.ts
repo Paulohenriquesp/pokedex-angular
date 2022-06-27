@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 // Component //
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
+import { Paginator, PaginatorModule } from 'primeng/paginator';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DetailsComponent } from './details/details.component';
     CommonModule,
     RoutingModule,
     SharedModule,
+    PaginatorModule
   ]
 })
 export class PagesModule { }

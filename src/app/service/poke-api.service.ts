@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class PokeApiService {
-  private url: string = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=10';
+  private url: string = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,7 @@ export class PokeApiService {
   }
 
   getPokemonPaginator(page: number, qtd: number){
-    return this.http.get<any>(`${environment.url_pokemon}/pokemon?offset=${page}&limit=${qtd}`);
+    return this.http.get<any>(`${environment.url_pokemon}pokemon?offset=${page}&limit=${qtd} `)
   }
   
   public apiGetPokemons(url: string): Observable<any> {

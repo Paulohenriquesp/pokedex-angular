@@ -17,29 +17,30 @@
           </li>
         </ul>
       </section>
-
+      
       <section class="pokemon__image">
         <img
-          [src]="pokemon.status.sprites.other.dream_world.front_default"
-          [alt]="pokemon.name"
+        [src]="pokemon.status.sprites.other.dream_world.front_default"
+        [alt]="pokemon.name"
         />
       </section>
     </a>
   </ng-template>
-  <ng-container *ngIf="!apiError">
-    <p-paginator
-      styleClass="teste"
-      [rows]="10"
-      [totalRecords]="page"
-      [currentPageReportTemplate]="getAllPokemons + 1"
-      (onPageChange)="paginate($event)"
-    ></p-paginator>
-  </ng-container>
 </div>
 
 <img
-  src="../../../assets/error.svg"
-  alt="Deu erro na mostragem do pokemon"
-  width="100%"
-  *ngIf="apiError"
+src="../../../assets/error.svg"
+alt="Deu erro na mostragem do pokemon"
+width="100%"
+*ngIf="apiError"
 />
+
+<ng-container *ngIf="!apiError">
+<p-paginator
+    styleClass="teste"
+    [rows]="10"
+    [totalRecords]="total"
+    [currentPageReportTemplate]="page + 1"
+    (onPageChange)="paginate($event)"
+  ></p-paginator>
+</ng-container>
