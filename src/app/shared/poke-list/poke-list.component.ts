@@ -36,7 +36,13 @@ export class PokeListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.pokeApiService.apiListAllPokemons.subscribe(
+    this.allPokemons();
+    
+    /* this.getScrollPokemons(); */
+  }
+
+  allPokemons(){
+    this.pokeApiService.apiListAllPokemons().subscribe(
       (res) => {
         this.spinner.show();
         this.setAllPokemons = res.results;
@@ -47,7 +53,6 @@ export class PokeListComponent implements OnInit {
         this.apiError = true;
       }
     );
-    /* this.getScrollPokemons(); */
   }
 
   public getSearch(value: string) {
@@ -62,6 +67,8 @@ export class PokeListComponent implements OnInit {
     this.page = $event.page;
     this.getAllPokemons();
   }
+
+
 
   /* receveidPokemon(){
     this.spinner.show();
